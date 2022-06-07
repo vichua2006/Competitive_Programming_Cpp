@@ -1,0 +1,450 @@
+General notes
+
+int/int is actually floor division (i.e. 19/10 == 1, not 1.9)
+however float,double,etc/int is decimal division (19.3/10 == 1.93)
+
+for efficiency, avoid vectors and maps, use array and unordered map.
+
+use '\n' instead of endl for faster performance.
+
+short,int,long,long long's binary representation uses two's compliment system (?)
+details: https://en.wikipedia.org/wiki/Two%27s_complement
+
+
+c++ does not have a elif, 
+else if(){
+    statement;
+} 
+is just a compressed version of 
+else{
+    if(){
+        statement;
+    }
+}
+
+
+while (conditions){
+    statement;
+}
+pretty much the same
+
+there is such as a do while:
+
+do{
+    statement;
+    ...
+
+}  while (condition);
+
+basically switching the order of execution
+while evaluates the condition first, then executed
+do while executes body first, then begins to loop after evaluation of condition is true
+
+for (init-statement (int i = 0);conditions (i < x); expression (i++)){
+    statement
+}
+init is executed at start of for
+next,condition is evaluated, if true, for body is executed
+then expression is executed
+pretty much the same as:
+
+for i in range(x):
+    statement
+
+however, for direct iteration:
+
+string str = "some string";
+for (auto c: str){
+    cout << c << '\n;
+}
+
+(auto can also be replaced with char, but better to be safe than sorry)
+
+another odd example:
+
+string str = "hello";
+for (auto &c : str){
+    c = toupper(c);
+    cout << s << '\n'; // here, c is a reference, therefore changes will affect s
+}
+
+same thing as:
+
+for (int i = 0;i < str.size();i++){
+    s[i] = toupper(s[i]);
+    cout << s << '\n';
+}
+
+
+A special statement: goto
+
+goto provides an unconditional jump from the goto to a another
+statement in the SAME FUNCTION. 
+syntactics: 
+goto Label;
+
+where label is an identifier that identifies a statement. 
+syntax is identifier followed by a :, then the statement:
+end: return; (end is the label)
+
+pointers point to a specified memory address
+
+int n = 1000;
+int *n_pointer = &n;
+(int pointer type n_pointer points to the address of variable n)
+*(asterisk) must be used, and if &(ampersand) was not place before n, n_pointer
+would have pointed to memory location 1000, instead of n itself
+
+n_pointer is now an memory address, to access the value stored inside the address:
+cout << *n_pointer; // output n
+cout << n_pointer; //output memory address
+
+
+I/O (IMPORTANT):
+
+there are several different methods
+
+1. iostream library: cin/cout
+cin automatically "splits" input by " "(space) and "\n"(nextline) depending on the type of data
+(also ignores all whitespace character before the first character)
+
+int a,b;
+cin >> a >> b;
+
+you can also read in a sequence of input by doing so:
+
+char a[20]; (array can only be char type)
+cin >> a;
+
+however, this is the python equivalent of python input() in terms of efficiency
+
+to speed up cin, use the following tow lines of code:
+
+ios_base::sync_with_stdio(false);
+cin.tie(NULL)
+
+cin is usually "in sync" with stdio as to prevent pointer issues
+by un-syncing, its efficiency almost matches scanf
+
+cin is also synced with cout for sensible user interaction
+
+details: https://stackoverflow.com/questions/31162367/significance-of-ios-basesync-with-stdiofalse-cin-tienull
+
+2. cin.getline():
+no explanation. syntax:
+
+char m[20]; (not using string, but just an array of char)
+cin.getline(varible to store char,length of string (for x, it ONLY reads length x-1));
+cout << m << endl;
+
+there is also a getline() function:
+
+string line;
+getline(line);
+//reads all characters up to either "^Z" or '\n' into line
+
+3. scanf/printf:
+to use, include <stdio.h>
+
+scanf ( const char * format, ...(address1,2,3,...) )
+
+it reads and stores input from stdin according to the format
+specified by the parameters, and store them to the location indicated by 
+additional parameters
+
+e.g.
+
+int n,k;
+scanf("%d%d",&n,&k);
+
+it directly writes the value to the memory of that variable, and it also
+"ignore any whitespace characters encountered before the next non-whitespace character"
+
+furthermore, "The additional arguments should point to already 
+allocated objects of the type specified by their corresponding 
+format specifier within the format string.
+(details at https://www.cplusplus.com/reference/cstdio/scanf/)
+"
+in the parameters, identifiers are needed to indicate what type of data it is
+common identifiers:
+
+%s - string (of char)
+%d - int
+%f - float
+
+this method is definitly faster than using cin/cout, however it is more complicated than cin
+
+
+file IO
+use:
+freopen(filename,mode,stream);
+Reopen stream with different file or mode
+Reuses stream to either open the file specified by filename or to change its access mode.
+
+DO NOT USE(to close:
+fclose(stream))
+
+details: https://www.cplusplus.com/reference/cstdio/freopen/
+
+Containers
+
+
+built-in array
+(there are actually two arrays in C++,one implemented in STL, another built-in)
+
+two types: static and dynamic array
+
+declaration syntax:
+
+<type> <name>[size];
+e.g.
+int arr[10];
+or
+int arr[] (unsized) = {1,2,3,4}; //this is size 4;
+
+array cannot be copied or assigned
+
+int a[10];
+int a2[10] = a; //error
+a2 = a;// more error
+
+you can also directly write into the index
+
+cin >> a[i];
+
+for a character array, you can directly:
+
+cin >> char_arr;//reads in a string
+
+multi-dimensional arrays:
+int arr[10][10]; //10 by 10 with int values
+
+by writing like so:
+int arr[10] = {0};
+it initializes the elements to 0
+(doesn't change you you write 1,2,3,4)
+
+be aware of array indexing:
+int arr[5] = {1,2,3,4,5};
+int a = arr[5]; // ouside of array range, result is random memory value, could be a piece of a string or smt
+
+
+sequential (ordered) Containers 
+
+vector
+deque (a more dynamic, dynamic array,change starting index therefore allows fast random access)
+list (double linked list)
+forward_list (single linked list)
+array (STL)
+string
+
+all the issues in python more or less also applies
+(inserting elements causes all elements to move, etc)
+
+vector
+std::vector<int> vec1;
+vec1.reserve(30);  // Allocate space for 30 items, but vec1 is still empty.
+
+std::vector<int> vec2;
+vec2.resize(30);  // Allocate space for 30 items, and vec2 now contains 30 items.
+(the latter is like [0]*30 in python)
+
+normally, if vector.size() == 0
+you cannot directly use index (a[10] = 5;) to assign values
+
+however, after being either resize() or reserve(), this operation becomes possible
+
+vector<int> v1; //initially empty
+vector<int> v2(v1); copy v1 (deepcopy)
+vector<int> v3 = v1; // smae thing
+vector<string> v1{"d","c","b","a"};
+vector<int> v2(10,-1); //10 -1s, default 0
+
+v1.push_back(elements);//append() in python
+v1.pop_back();// pop()
+v1.size();//len()
+v1.reserve(10);// request a change in capacity
+
+Iterators
+
+auto b = v.begin(),e = v.end(); //first and last element
+(NOTE e actually denotes one past the last element, which is like range in python, fits the for loop)
+
+basically pointers pointing to an element in the container 
+
+iter ++; //move to next element
+iter --; // move to previous element
+iter + n; // move n element forward
+iter - n; // backwards
+
+iter1 == iter2; // if they point to the same element
+
+
+
+string
+basically a char vector
+string can be copied
+
+string s1; // default value, empty string
+string s2 = s1;
+
+string s4(10,'c'); //"cccccccccc"
+
+s.empty(); //check if empty
+s.size(); //len equivalent of python
+s[n];
+s1 + s2; // concatenation
+s1 == s2;
+s.append(<string>); // adds string to the end of the string
+s.push_back(<char>): // adds character to the end of string
+s.find(item); // same as python
+s.substr(starting_pos,length_of_substring); //returns a substring of length j starting at idx i
+
+as for string comparisons:
+
+ABC < ABCD
+
+for ABCD <>= ABCF ---> D <>= F
+
+pairs
+contains two element of (potentially) different types
+
+syntax:
+pairs<type1,typ2> p;
+
+makepair(a,b); returns pairs value with a,b
+p = {a,b}; same thing
+pair.first(); returns first element
+pair.second(); returns second element
+
+
+
+
+unordered set
+pretty much C++ equivalent of python set
+need to #include <unordered_set>
+syntax:
+set<int> mySet = {3, 6, 4, 78, 10};
+(or set<int> mySet;// empty)
+
+set.find(element)
+tries to locate a element, if found, returns that element, if not found, return the end() iterator.
+
+details & methods:
+https://runestone.academy/runestone/books/published/cpp4python/CollectionData/UnorderedSet.html
+
+unordered map (hash table)
+C++ equivalent of python dictionary
+#include <unordered_map>
+seems like the values of a an new key is 0 by default, nice 
+details & methods:
+https://runestone.academy/runestone/books/published/cpp4python/CollectionData/HashTables.html
+
+IMPORTANT: strings can act as KEYS! (very useful for ccc 19 J5)
+
+
+
+General algorithm
+these are a collection of functions designed to be used on a range of elements
+#include <algorithm>
+when using iterators, better to use auto
+
+
+
+Functions
+
+int f(int a,char b,long long c,...){
+    do something
+}
+
+a function cannot return an array or a function
+(however, a function may return a pointer to an array or function)
+
+the concept of variable scope and lifetime also apply in c++
+
+static variable preserves the variable so that it does not get destroyed after the its block ends
+
+parameters initialization works the same way as variable initialization
+you can pass in a pointer a pointer that points to an array
+or
+you can create a reference:
+int i = 1;
+int &r = i;
+(basically assigning the address of variable r to address of i,basically an alias)
+
+
+bitwise operations
+
+int x = 0b1001001; // number as binary
+
+AND:
+x & y produces a number that has one bit in positions where both x and y have bitwise
+26 & 22 = 18
+x & 1 = 0 means x is even, x & 1 = 1 means x is odd
+more generally, x is divisible by 2^k exactly when x & (2^k - 1) = 0
+
+OR:
+x | y produces a number that has bits in positions that x and y have bits
+
+XOR:
+x ^ y produces a number that has one bit in positions where exactly one of x and y have bits
+
+
+SHIFTS:
+x << k appends k zero bits intot the number (basically multiplying 2^k)
+x >> k removes the last k bits from the number
+
+
+Builtins:
+__builtin_clz(x); counts the number of zeros at the beginning of the number
+__builtin_ctz(x); counts the number of zeros at the end of the number
+__builtin_popcount(x); count the number of "1"s
+__builtin_parity(x); the parity of the the ones
+
+common tricks
+
+find the biggest power of two that divids x:
+int d = 1<<__builtin_clz(x); think it out
+
+WARNING!!
+__builtin_clz() and __builtin_ctz() can produce different results when given a literal "0" and a variable with the value "0"
+
+
+
+memeset(* ptr, int value, size_t num )
+
+it sets the first num bytes (8 bits) for the memory pointed by ptr to value
+the reason it takes value as char is that a character is exactly 1 byte
+and because it works one byte at a time, value cannot exceed 127
+
+0x3f is 63 in dec or 111111 in binary, therefore for a 32 bit int, it will look like so after initialization:
+111111001111110011111100111111, or 1061109567 , just exceeding 1e9, perfect for INF.
+
+following code should be experimented with if unsure:
+====================================================
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+
+int arr[10][10];
+
+string dec_to_bin(int x){
+    string ans = "";
+    while(x){
+            // odd
+        if (1&x) ans += '1';
+        else ans += '0';
+        x /= 2;
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
+
+int main(){
+    memset(arr,0x3f,sizeof arr);
+    cout << 0x3f << '\n' << dec_to_bin(arr[1][1]) << '\n' << arr[1][1];
+
+    return 0;
+}
+=======================================================
