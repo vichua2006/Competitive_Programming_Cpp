@@ -52,7 +52,7 @@ int main(){
         // i - pos[note] + sum + N - i = sum + N - pos[note]
         if (sum + N - pos[note] > K){
             // compute new smaples needed
-            ll ns = K - sum - N + (ll)i;
+            ll ns = K - sum - (N - (ll)i);
             // then the req. note is arr[i - ns] (assuming that no notes repeated during this interval)
             arr[i] = arr[i - ns];
             // fill the rest with arr[i]
@@ -61,6 +61,7 @@ int main(){
         }
         // else just keep filling
         arr[i] = note;
+        //  + M
         sum += (ll)i - pos[note];
         pos[note] = i;
     }
