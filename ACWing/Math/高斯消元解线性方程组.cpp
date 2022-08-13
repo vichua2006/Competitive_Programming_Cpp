@@ -103,7 +103,7 @@ int main(){
         }
         cout.precision(2);
         cout << fixed;
-        for (int i=0;i<N;i++) cout << arr[i][N] << '\n';
+        for (int i=0;i<N;i++) cout << (fabs(arr[i][N]) < eps ? 0.00 : arr[i][N]) << '\n';
     }
     return 0;
 }   

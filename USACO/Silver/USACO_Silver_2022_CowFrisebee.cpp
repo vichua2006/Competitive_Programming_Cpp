@@ -8,7 +8,7 @@ however, since their heights are unique, for any valid pairs i < j, their height
 2. hi < hj
 
 for case one, notice that it means cow i must be the closest cow to the left of j that is taller than hj
-if cow i is any further away, it would contradict the assumption that the pair (i, j) is valid (max(hi+1, ..., hj-1) < min(hi, hj))
+if not, and there is a cow that closer to j and taller, it would contradict the assumption that the pair (i, j) is valid (max(hi+1, ..., hj-1) < min(hi, hj))
 hence, to find all possible case 1., we iterate, and for each element, find the first element to its left that is greater than the current element 
 (or, the index of such element, in this case)
 
