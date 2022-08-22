@@ -1,4 +1,7 @@
 // another bellman-ford, but we actually have to find the negative cycle this time
+
+
+// 22-8-2022 update: so this version actually passes. It has RTE because the maximum N is actually 2500, while it's only set to 2000 here
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
