@@ -10,7 +10,7 @@ To find such solution, realize that $(a, b) = (b, a \ \textrm{mod} \ b)$, which 
 
 After substitution, we get :
 $$
-bx' + (a - \lfloor \frac{a}{b} \rfloor \cdot b)y' = (a,b)
+bx' + (a - \lfloor \frac{a}{b} \rfloor \cdot b)y' = (a,b) n
 $$
 Rearrange it to :
 $$

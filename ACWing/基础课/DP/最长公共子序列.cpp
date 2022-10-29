@@ -14,6 +14,8 @@ the set dp[i][j] can be divided into 4 subsets:
 3. we use the jth letter only
 4. we use both ith and jth letter
 
+(update: the more precise description is that the character(s) is present in the solution)
+
 we discuss the two easy sets first: 1,4
 
 4 only exists if a[i] == b[j], and give a value of dp[i-1][j-1] + 1
