@@ -8,7 +8,7 @@ dif[a][d+1] -= X,
 dif[c+1][b] -= X,
 dif[c+1][d+1] += X;
 
-think in the logic of " the prefox sum of this will include this point..."
+think in the logic of " the prefix sum of this will include this point..."
 and to initialize, we can just apply an update to (a,b), (a,b) and set it to that value
 
 */

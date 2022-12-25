@@ -9,31 +9,32 @@ using namespace std;
 #define ull unsigned long long
 #define ar array
 
-const int maxN = 2e3 + 10, INF = 1e9, MOD = 1e9 + 7;
-int T, N;
-int arr[maxN];
+const int maxN = 1e6 + 10, INF = 1e9, MOD = 1e9 + 7;
+int N;
+ll arr[maxN];
 
 int main(){
     cin.tie(0);
     cin.sync_with_stdio(0);
     //setIO();
 
-    cin >> T;
-    for (int t =0;t<T;t++){
-        cin >> N;
-        for (int i=0;i<N;i++) cin >> arr[i];
-        int res = -INF;
-        for (int i=0;i<N;i++) res = max(res, arr[(i + N - 1) % N] - arr[i]);
+    cin >> N;
+    for (int i=2;i<N+1;i++){
+        string name; cin >> name;
+        if (name[0] == 'P') cin >> arr[i];
+        else {
+            ll a, b; cin >> a >> b;
+            arr[i] = b + arr[a];
+        }
+    }
 
-        int msf = -INF;
-        for (int i=1;i<N;i++) msf = max(msf, arr[i]);
-        res = max(res, msf - arr[0]);
-
-        msf = INF;
-        for (int i=0;i<N-1;i++) msf = min(msf, arr[i]);
-        res = max(res, arr[N - 1] - msf);
-
-        cout << res << '\n';
+    ll res = 0x3f3f3f3f3f3f3f3f;
+    for (int i=1;i<N;i++) res = min(res, arr[i + 1] - arr[i]);
+    for (int i=1;i<N;i++){
+        if (res == arr[i + 1] - arr[i]){
+            cout << res << ' ' << i << ' ' << i + 1 << '\n';
+            break;
+        }
     }
 
     return 0;

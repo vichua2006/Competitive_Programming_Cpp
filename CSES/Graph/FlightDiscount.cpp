@@ -29,12 +29,14 @@ void solve(){
         for (ar<ll,2> a: g[v]){
             ll nd = a[0], nv = a[1];
             // dis[v] and c are the same thing
-            if ((dis[nv][t] > d + nd)&&(!visited[nv][t])){
+            if (dis[nv][t] > d + nd){
                 dis[nv][t] = d + nd;
                 pq.push({d+nd,nv,t});
+
+                
             }
             // if coupon was not used, use it on this edge
-            if ((!t)&&(!visited[nv][1])){
+            if (!t){
                 if (dis[nv][1] > d + nd/2){
                     dis[nv][1] = d + nd/2; 
                     pq.push({d + nd/2,nv,1});

@@ -1,0 +1,153 @@
+{
+  "main": {
+    "id": "ca75ae5571ced363",
+    "type": "split",
+    "children": [
+      {
+        "id": "c60732d5fec1613a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bc44bcb20f575222",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "7c67ef44354062fb",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "ae56acb1a1bcdb9a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9a7a50d3bbf99df0",
+    "type": "split",
+    "children": [
+      {
+        "id": "585d78fad0710d7e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a2defc7ede2bd882",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7405a693a45fb530",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1fdfd9f667177e75",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "54597e0a5c7243e5",
+    "type": "split",
+    "children": [
+      {
+        "id": "e34d0c41e1f434d5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9130c174596e29a2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a8cf60ff155fe5b2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a04cd96b7943870d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "be3b040e009b28c4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "ae56acb1a1bcdb9a",
+  "lastOpenFiles": [
+    "test.md",
+    "ACWing/基础课/Math/扩展欧几里得算法/The Extended Euclidean Algorithm.md"
+  ]
+}
