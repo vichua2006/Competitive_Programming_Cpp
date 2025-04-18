@@ -10,33 +10,19 @@ using namespace std;
 #define ar array
 
 const int maxN = 1e6 + 10, INF = 1e9, MOD = 1e9 + 7;
-ll N = 1e4;
-ll dp[maxN];
+int N = 80;
+int arr[maxN], num[] = {3, 8, 12};
 
-void setIO(string name = "")
-{
-    freopen((name + ".txt").c_str(), "w", stdout);
-}
+int f(int a, int b) { return a + b; }
 
 int main()
 {
     cin.tie(0);
     cin.sync_with_stdio(0);
-    setIO("out");
+    // setIO();
 
-    dp[0] = 1, dp[1] = 1;
-    for (int i = 2; i < N; i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            if (i - 1 == 2 * j)
-                dp[i] += dp[j] * dp[j];
-            else
-                dp[i] += dp[j] * dp[i - j - 1];
-        }
-    }
-
-    for (int i = 0; i < N; i++)
-        cout << dp[i] << '\n';
+    int a, b;
+    cin >> a >> b;
+    cout << f(a, b) << '\n';
     return 0;
 }
